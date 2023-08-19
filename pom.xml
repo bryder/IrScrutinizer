@@ -477,6 +477,22 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>copy-linuxarm64-so</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/Linux-arm64</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/native/Linux-arm64</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -596,22 +612,6 @@
                                 <argument>+x</argument>
                                 <argument>${project.nameLowercase}.sh</argument>
                                 <argument>setup-${project.nameLowercase}.sh</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <!-- Build the MacOS App (unconditionally!) -->
-                    <execution>
-                        <id>make-macos-app</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${basedir}/tools/mkapp.sh</executable>
-                            <workingDirectory>${basedir}</workingDirectory>
-                            <arguments>
-                                <argument>${project.artifactId}</argument>
-                                <argument>${project.version}</argument>
                             </arguments>
                         </configuration>
                     </execution>
